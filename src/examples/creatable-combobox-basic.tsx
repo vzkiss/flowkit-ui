@@ -15,7 +15,12 @@ import {
 } from "@/flowkit/creatable-combobox/creatable-combobox";
 
 // Waku
-const initialFrameworks = ["Next.js", "SvelteKit", "Remix", "Waku"] as string[];
+const initialFrameworks = [
+  // "Next.js",
+  // "SvelteKit",
+  // "Remix",
+  "Waku",
+];
 
 export default function ComboboxBasic() {
   const [frameworks, setFrameworks] = useState(initialFrameworks);
