@@ -94,10 +94,12 @@ function CreatableCombobox({
   ...props
 }: CreatableComboboxProps) {
   const [query, setQuery] = React.useState<string>("");
+  const pendingCreateRef = React.useRef<string | null>(null);
 
   // Augment items with the creatable item if there's no exact match
   const augmentedItems = (() => {
     const trimmedQuery = query.trim();
+
     if (!trimmedQuery) return items;
 
     const lowered = trimmedQuery.toLocaleLowerCase();
@@ -124,8 +126,8 @@ function CreatableCombobox({
     details: ComboboxRootChangeEventDetails,
   ) => {
     if (isCreatableItem(next)) {
-      onCreateValue(next.value);
-      setQuery(""); // clear the query
+      pendingCreateRef.current = next.value;
+      setQuery("");
       return;
     }
 
@@ -140,6 +142,13 @@ function CreatableCombobox({
       inputValue={query}
       onInputValueChange={setQuery}
       onValueChange={handleValueChange}
+      onOpenChangeComplete={(open) => {
+        if (!open && pendingCreateRef.current) {
+          onCreateValue(pendingCreateRef.current);
+          pendingCreateRef.current = null;
+        }
+        props.onOpenChangeComplete?.(open);
+      }}
       itemToStringLabel={(item: unknown): string => {
         if (isCreatableItem(item)) return item.value;
         // pass through overrides or use base-ui default itemToStringLabel behavior
