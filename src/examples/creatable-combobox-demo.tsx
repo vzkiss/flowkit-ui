@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import {
-  Combobox,
   ComboboxContent,
   ComboboxEmpty,
   ComboboxInput,
@@ -28,8 +27,6 @@ const initialTemplates: Template[] = [
   { id: 3, value: "sablon3", label: "Sablon 3", isDefault: false },
   { id: 4, value: "sablon4", label: "Sablon 4", isDefault: false },
   { id: 5, value: "sablon5", label: "Sablon 5", isDefault: false },
-  { id: 6, value: "sablon6", label: "Sablon 6", isDefault: false },
-  { id: 7, value: "sablon7", label: "Sablon 7", isDefault: false },
 ];
 
 export default function CreatableComboboxDemo() {
@@ -37,72 +34,45 @@ export default function CreatableComboboxDemo() {
   const [selected, setSelected] = useState<Template | null>(null);
 
   return (
-    <>
-      <ComboboxBasic />
+    <CreatableCombobox
+      items={templates}
+      value={selected}
+      onValueChange={(value) => setSelected(value as Template | null)}
+      onCreateValue={(value) => {
+        // TODO
+        const newItem = {
+          id: templates.length + 1,
+          value,
+          label: value,
+          isDefault: false,
+        };
 
-      <CreatableCombobox
-        items={templates}
-        // value={selected}
-        // onValueChange={(value) => setSelected(value as Template | null)}
-        onCreateValue={(value) => {
-          // TODO
-          const newItem = {
-            id: Math.floor(Math.random() * 1000000),
-            value,
-            label: value,
-            isDefault: false,
-          };
-
-          // TODO: handled internally
-          // add save
-          setTemplates((prev) => [...prev, newItem]);
-          setSelected(newItem);
-        }}
-      >
-        <ComboboxInput placeholder="Select or create a template…" showClear />
-        <ComboboxContent>
-          <ComboboxEmpty>No templates found.</ComboboxEmpty>
-          <ComboboxList>
-            {(item) =>
-              isCreatableItem(item) ? (
-                <ComboboxItemCreatable key="__create__" value={item}>
-                  {item.label}
-                </ComboboxItemCreatable>
-              ) : (
-                <ComboboxItem key={item.id} value={item}>
-                  {item.label}
-                </ComboboxItem>
-              )
-            }
-          </ComboboxList>
-        </ComboboxContent>
-      </CreatableCombobox>
-    </>
-  );
-}
-
-const frameworks = [
-  "Next.js",
-  "SvelteKit",
-  "Nuxt.js",
-  "Remix",
-  "Astro",
-] as const;
-
-function ComboboxBasic() {
-  return (
-    <Combobox items={frameworks}>
-      <ComboboxInput placeholder="Select a framework" />
+        setTemplates((prev) => {
+          const newTemplates = [...prev, newItem].sort((a, b) =>
+            a.label.localeCompare(b.label),
+          );
+          return newTemplates;
+        });
+        setSelected(newItem);
+      }}
+    >
+      <ComboboxInput placeholder="Select or create a template…" showClear />
       <ComboboxContent>
-        <ComboboxEmpty>No items found.</ComboboxEmpty>
+        <ComboboxEmpty>No templates found.</ComboboxEmpty>
         <ComboboxList>
-          {(item) => (
-            <ComboboxItem key={item} value={item}>
-              {item}
-            </ComboboxItem>
-          )}
+          {(item) =>
+            isCreatableItem(item) ? (
+              <ComboboxItemCreatable key="__create__" value={item}>
+                {item.label}
+              </ComboboxItemCreatable>
+            ) : (
+              <ComboboxItem key={item.id} value={item}>
+                {item.label}
+              </ComboboxItem>
+            )
+          }
         </ComboboxList>
       </ComboboxContent>
-    </Combobox>
+    </CreatableCombobox>
   );
 }
