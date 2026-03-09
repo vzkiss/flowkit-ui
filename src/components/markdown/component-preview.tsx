@@ -1,7 +1,6 @@
 // import { OpenInV0Button } from "@/components/open-in-v0-button";
 
 import { Card } from "@/components/ui/card";
-import "@/flowkit/theme.css";
 
 interface ComponentPreviewProps {
   title: string;
@@ -18,7 +17,7 @@ export default function ComponentPreview({
     // <div className="relative flex min-h-[450px] flex-col gap-4 rounded-xl border p-4">
     <Card
       data-slot="component-preview"
-      className="flowkit-theme group relative flex flex-col gap-4 rounded-xl border p-4 bg-transparent"
+      className="group relative flex flex-col gap-4 rounded-xl border p-4 bg-transparent"
     >
       {/* <div className="flex items-center justify-between">
         <h2 className="text-muted-foreground text-sm sm:pl-3">{title}</h2>
