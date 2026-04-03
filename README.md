@@ -4,7 +4,7 @@ Documentation site and [shadcn](https://ui.shadcn.com/) registry for Flowkit com
 
 ## Requirements
 
-- [Node.js](https://nodejs.org/) 22+ (see [`.nvmrc`](.nvmrc))
+- [Node.js](https://nodejs.org/) 24+ (see [`.nvmrc`](.nvmrc))
 - [pnpm](https://pnpm.io/)
 
 ## Local development
