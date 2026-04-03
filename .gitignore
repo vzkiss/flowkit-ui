@@ -4,6 +4,8 @@
 # generated content
 .source
 
+.pnpm-store
+
 # test & build
 /coverage
 /.next/
