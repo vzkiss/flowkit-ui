@@ -6,6 +6,7 @@
 
 .pnpm-store
 .temp
+.docs-internal
 
 # test & build
 /coverage
