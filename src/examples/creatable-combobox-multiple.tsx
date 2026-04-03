@@ -20,59 +20,65 @@ import {
   CreatableItem,
 } from "@/flowkit/creatable-combobox/creatable-combobox";
 
-type Framework = {
+type IssueLabel = {
   id: number;
   value: string;
 };
 
-const initialFrameworks: Framework[] = [
-  { id: 1, value: "Next.js" },
-  { id: 2, value: "SvelteKit" },
-  { id: 3, value: "Nuxt.js" },
-  { id: 4, value: "Remix" },
-  { id: 5, value: "Astro" },
+const initialLabels: IssueLabel[] = [
+  { id: 1, value: "Bug" },
+  { id: 2, value: "Regression" },
+  { id: 3, value: "Breaking change" },
+  { id: 4, value: "Tech Debt" },
+  { id: 5, value: "Works on my machine" },
 ];
 
 export default function CreatableComboboxMultiple() {
   const anchor = useComboboxAnchor();
 
-  const [frameworks, setFrameworks] = useState(initialFrameworks);
-  const [selected, setSelected] = useState<Framework[]>([frameworks[0]]);
+  const [issueLabels, setIssueLabels] = useState(initialLabels);
+  const [selected, setSelected] = useState<IssueLabel[]>([issueLabels[0]]);
 
   const handleCreateValue = (value: string) => {
-    const newItem = { id: frameworks.length + 1, value };
-    setFrameworks((prev: Framework[]) => [...prev, newItem]);
-    setSelected((prev: Framework[]) => [...prev, newItem]);
+    const trimmed = value.trim();
+    let created: IssueLabel;
+    setIssueLabels((prev: IssueLabel[]) => {
+      created = {
+        id: Math.max(0, ...prev.map((l) => l.id)) + 1,
+        value: trimmed,
+      };
+      return [...prev, created].sort((a, b) => a.value.localeCompare(b.value));
+    });
+    setSelected((prev: IssueLabel[]) => [...prev, created!]);
   };
 
   return (
     <CreatableCombobox
       multiple
       autoHighlight
-      items={frameworks}
+      items={issueLabels}
       value={selected}
       onValueChange={(value) => {
-        console.log("multiple value", value);
-        setSelected(value as Framework[]);
+        setSelected(value as IssueLabel[]);
       }}
       onCreateValue={handleCreateValue}
     >
       <ComboboxChips ref={anchor} className="w-full max-w-xs">
         <ComboboxValue>
-          {(values: Framework[]) => (
+          {(values: IssueLabel[]) => (
             <React.Fragment>
-              {values.map((value: Framework) => (
+              {values.map((value: IssueLabel) => (
                 <ComboboxChip key={value.id}>{value.value}</ComboboxChip>
               ))}
-              <ComboboxChipsInput />
+              <ComboboxChipsInput placeholder="Select or create issue labels…" />
             </React.Fragment>
           )}
         </ComboboxValue>
       </ComboboxChips>
       <ComboboxContent anchor={anchor}>
-        <ComboboxEmpty>No items found.</ComboboxEmpty>
+        <ComboboxEmpty>No labels match.</ComboboxEmpty>
         <ComboboxList>
-          {(item: Framework | CreatableItem) =>
+          {(item: IssueLabel | CreatableItem) =>
             isCreatableItem(item as CreatableItem) ? (
               <ComboboxItemCreatable
                 key="__create__"
@@ -80,10 +86,10 @@ export default function CreatableComboboxMultiple() {
               />
             ) : (
               <ComboboxItem
-                key={(item as Framework).id}
-                value={item as Framework}
+                key={(item as IssueLabel).id}
+                value={item as IssueLabel}
               >
-                {(item as Framework).value}
+                {(item as IssueLabel).value}
               </ComboboxItem>
             )
           }

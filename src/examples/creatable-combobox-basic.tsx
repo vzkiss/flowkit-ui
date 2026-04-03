@@ -14,27 +14,26 @@ import {
   isCreatableItem,
 } from "@/flowkit/creatable-combobox/creatable-combobox";
 
-// Waku
-const initialFrameworks = [
-  // "Next.js",
-  // "SvelteKit",
-  // "Remix",
-  "Waku",
+const initialIssueLabels = [
+  "Bug",
+  "Regression",
+  "Breaking change",
+  "Tech Debt",
+  "Works on my machine",
 ];
 
 export default function ComboboxBasic() {
-  const [frameworks, setFrameworks] = useState(initialFrameworks);
+  const [labels, setLabels] = useState(initialIssueLabels);
 
   const handleCreateValue = (value: string) => {
-    console.log("create value", value);
-    setFrameworks((prev) => [...prev, value]);
+    setLabels((prev) => [...prev, value].sort((a, b) => a.localeCompare(b)));
   };
 
   return (
-    <CreatableCombobox items={frameworks} onCreateValue={handleCreateValue}>
-      <ComboboxInput placeholder="Type to add a new framework" />
+    <CreatableCombobox items={labels} onCreateValue={handleCreateValue}>
+      <ComboboxInput placeholder="Select or create an issue label…" />
       <ComboboxContent>
-        <ComboboxEmpty>No items found.</ComboboxEmpty>
+        <ComboboxEmpty>No labels match.</ComboboxEmpty>
         <ComboboxList>
           {(item) =>
             isCreatableItem(item) ? (

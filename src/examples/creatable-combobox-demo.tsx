@@ -14,51 +14,51 @@ import {
   isCreatableItem,
 } from "@/flowkit/creatable-combobox/creatable-combobox";
 
-type Template = {
+type Label = {
   id: number;
   value: string;
   label: string;
 };
 
-const initialTemplates: Template[] = [
-  { id: 1, value: "sablon1", label: "Sablon 1" },
-  { id: 2, value: "sablon2", label: "Sablon 2" },
-  { id: 3, value: "sablon3", label: "Sablon 3" },
-  { id: 4, value: "sablon4", label: "Sablon 4" },
-  { id: 5, value: "sablon5", label: "Sablon 5" },
+const initialLabels: Label[] = [
+  { id: 1, value: "bug", label: "Bug" },
+  { id: 2, value: "regression", label: "Regression" },
+  { id: 3, value: "breaking-change", label: "Breaking change" },
+  { id: 4, value: "tech-debt", label: "Tech Debt" },
+  { id: 5, value: "works-on-my-machine", label: "Works on my machine" },
 ];
 
 export default function CreatableComboboxDemo() {
-  const [templates, setTemplates] = useState<Template[]>(initialTemplates);
-  const [selected, setSelected] = useState<Template | null>(null);
+  const [labels, setLabels] = useState<Label[]>(initialLabels);
+  const [selected, setSelected] = useState<Label | null>(null);
 
   return (
     <CreatableCombobox
-      items={templates}
+      items={labels}
       value={selected}
       onValueChange={(value) => {
         console.log("value", value);
-        setSelected(value as Template | null);
+        setSelected(value as Label | null);
       }}
       onCreateValue={(value) => {
-        const newItem = {
-          id: templates.length + 1,
-          value: value.trim().toLowerCase(),
-          label: value,
-        };
-
-        setTemplates((prev: Template[]) => {
-          const newTemplates = [...prev, newItem].sort((a, b) =>
+        const trimmed = value.trim();
+        let created: Label;
+        setLabels((prev: Label[]) => {
+          created = {
+            id: Math.max(0, ...prev.map((l) => l.id)) + 1,
+            value: trimmed.toLowerCase().replace(/\s+/g, "-"),
+            label: trimmed,
+          };
+          return [...prev, created].sort((a, b) =>
             a.label.localeCompare(b.label),
           );
-          return newTemplates;
         });
-        setSelected(newItem);
+        setSelected(created!);
       }}
     >
-      <ComboboxInput placeholder="Select or create a template…" showClear />
+      <ComboboxInput placeholder="Select or create an issue label…" showClear />
       <ComboboxContent>
-        <ComboboxEmpty>No templates found.</ComboboxEmpty>
+        <ComboboxEmpty>No labels match.</ComboboxEmpty>
         <ComboboxList>
           {(item) =>
             isCreatableItem(item) ? (
