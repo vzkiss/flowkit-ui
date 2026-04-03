@@ -13,8 +13,9 @@ export function DocsAttribution() {
           target="_blank"
         >
           {gitConfig.user}
-        </a>{" "}
-        for use with{" "}
+        </a>
+        {/* {" "} */}
+        {/* for use with{" "}
         <a
           href="https://ui.shadcn.com"
           className="font-medium text-fd-foreground underline underline-offset-2 hover:text-fd-accent-foreground"
@@ -22,7 +23,7 @@ export function DocsAttribution() {
           target="_blank"
         >
           shadcn/ui
-        </a>
+        </a> */}
         . The source code is available on{" "}
         <a
           href={`https://github.com/${gitConfig.user}/${gitConfig.repo}`}
