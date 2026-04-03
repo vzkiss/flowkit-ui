@@ -24,13 +24,21 @@ export default function HomePage() {
   return (
     <div className="mx-auto flex w-full max-w-3xl flex-1 flex-col px-4 py-16 md:py-24">
       <section className="text-center">
-        <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
+        {/* <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
           Flowkit UI
-        </h1>
+        </h1> 
         <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground sm:text-xl">
           Opinionated, accessible React components for production apps, layered
           on shadcn/ui and Base UI. The catalog is small today and will grow
           over time.
+        </p>*/}
+        <h1 className="text-2xl font-bold tracking-tight sm:text-5xl">
+          Opinionated, accessible React components for production apps
+        </h1>
+
+        <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground sm:text-xl">
+          Layered on shadcn/ui and Base UI. The catalog is small today and will
+          grow over time.
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
           <Link
@@ -83,7 +91,7 @@ export default function HomePage() {
             Full documentation
           </Link>
         </div>
-        <div className="mx-auto mt-8 flex w-full max-w-md justify-center">
+        <div className="mx-auto mt-8 flex w-full max-w-2xl justify-center">
           <CreatableComboboxDemo />
         </div>
       </section>

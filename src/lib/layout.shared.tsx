@@ -1,4 +1,5 @@
 import type { BaseLayoutProps } from "fumadocs-ui/layouts/shared";
+import { FlowkitLogo } from "@/components/flowkit-logo";
 
 export const gitConfig = {
   user: "vzkiss",
@@ -10,7 +11,12 @@ export const gitConfig = {
 export function baseOptions(): BaseLayoutProps {
   return {
     nav: {
-      title: "flowkit-ui",
+      title: (
+        <>
+          <FlowkitLogo />
+          flowkit-ui
+        </>
+      ),
     },
     githubUrl: `https://github.com/${gitConfig.user}/${gitConfig.repo}`,
   };

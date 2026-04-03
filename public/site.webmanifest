@@ -1,0 +1,17 @@
+{
+  "name": "Flowkit UI",
+  "short_name": "Flowkit UI",
+  "description": "Opinionated, accessible React components for production apps—built on shadcn/ui and Base UI.",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#0a0a0b",
+  "theme_color": "#141416",
+  "icons": [
+    {
+      "src": "/logo.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "any"
+    }
+  ]
+}
