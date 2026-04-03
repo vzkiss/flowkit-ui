@@ -5,6 +5,7 @@
 .source
 
 .pnpm-store
+.temp
 
 # test & build
 /coverage
