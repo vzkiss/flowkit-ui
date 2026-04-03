@@ -1,6 +1,6 @@
 ---
 title: Creatable Combobox
-description: Create a new item when the filter matches no items
+description: A flexible input control with multiselect, autocomplete, and creatable support.
 links:
   doc: https://base-ui.com/react/components/combobox
   api: https://base-ui.com/react/components/combobox#api-reference
@@ -19,26 +19,61 @@ import CreatableComboboxMultiple from "@/examples/creatable-combobox-multiple";
   <CreatableComboboxBasic />
 </ComponentPreview>
 
-## Demo
+## Installation
 
-<div className="grid grid-cols-2 gap-4">
-  <ComponentPreview
-    styleName="base-nova"
-    name="creatable-combobox-demo"
-    previewClassName="h-56"
-  >
-    <CreatableComboboxDemo />
-  </ComponentPreview>
-  <ComponentPreview
-    styleName="base-nova"
-    name="creatable-combobox-demo"
-    previewClassName="h-56"
-  >
-    <CreatableComboboxDemo />
-  </ComponentPreview>
-</div>
+Install the component into your project:
 
-## Multiple
+```bash
+npx shadcn@latest add combobox
+```
+
+Then copy `creatable-combobox.tsx` into your project:
+
+```bash
+cp creatable-combobox.tsx src/components/ui/creatable-combobox.tsx
+```
+
+## Usage
+
+```tsx
+import {
+  CreatableCombobox,
+  ComboboxItemCreatable,
+  isCreatableItem,
+} from "@/components/ui/creatable-combobox";
+```
+
+Single select supports both controlled and uncontrolled usage. Multiple select requires a controlled `value` prop — the caller owns the selected array and is responsible for adding newly created items to both `items` and `value` inside `onCreateValue`.
+
+## Examples
+
+### Basic
+
+A simple string-based single select with creatable support.
+
+<ComponentPreview
+  styleName="base-nova"
+  name="creatable-combobox-basic"
+  previewClassName="h-56"
+>
+  <CreatableComboboxBasic />
+</ComponentPreview>
+
+### With objects
+
+Object items with `id`, `value`, and `label` fields.
+
+<ComponentPreview
+  styleName="base-nova"
+  name="creatable-combobox-demo"
+  previewClassName="h-56"
+>
+  <CreatableComboboxDemo />
+</ComponentPreview>
+
+### Multiple
+
+Multiple selection requires a controlled `value` prop.
 
 <ComponentPreview
   styleName="base-nova"
@@ -48,23 +83,19 @@ import CreatableComboboxMultiple from "@/examples/creatable-combobox-multiple";
   <CreatableComboboxMultiple />
 </ComponentPreview>
 
-# Usage
-
-See the documentation for more information.
-
-single → controlled or uncontrolled ✅
-multiple → controlled only ✅
-
-### Accordions [#accordions]
-
-something about abve here
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sed feugiat lacus, nec condimentum sem. Donec nec scelerisque felis, a eleifend arcu. Vivamus cursus urna odio, eget molestie odio aliquam in. Sed elementum pulvinar ipsum et placerat. Proin vel leo suscipit, sagittis lorem et, porttitor diam. Donec at condimentum mi. Vestibulum sed iaculis nulla. Proin hendrerit nulla at volutpat vulputate. Nam sit amet tempus augue, sit amet pretium ex. Aenean maximus neque nec porttitor aliquet. Nunc interdum lobortis purus, at commodo diam semper eu. Aenean dapibus nunc ac metus luctus ornare. Suspendisse et erat quam. Nulla id tempus mauris. Vestibulum sem ligula, pellentesque sit amet mauris a, interdum volutpat magna. In nec commodo purus.
-
-Morbi eget nibh semper, consequat nibh a, mattis mi. Donec id mi nec sapien rutrum pulvinar eget ac nibh. Proin ut sem placerat felis sagittis auctor sed eu ipsum. Ut eu maximus metus, quis vestibulum est. Vestibulum ullamcorper est id est pellentesque pulvinar. Sed commodo nisl vitae risus tincidunt, a pharetra tellus convallis. Fusce egestas tortor at magna imperdiet semper. Sed fringilla lacinia purus quis commodo. Integer aliquam lorem sed iaculis pharetra. Integer purus augue, semper ut orci eget, consequat iaculis odio. Praesent luctus tristique mauris eget maximus. Sed iaculis tortor eget nisl vehicula elementum.
-
-Curabitur viverra, mi et suscipit viverra, nulla augue congue enim, vitae elementum diam felis vel ligula. Aenean eu imperdiet nisi. Curabitur felis leo, condimentum et maximus vel, pharetra ac tortor. Phasellus luctus ex tortor, sit amet porttitor lorem feugiat vel. Sed sit amet sagittis tortor. Nullam ullamcorper consequat luctus. Curabitur sed pulvinar mauris. Mauris ac mauris fermentum, tempus sem in, maximus tellus. Curabitur arcu orci, feugiat sed pulvinar ac, facilisis sed enim. Sed ut lectus id nisl laoreet tincidunt. Sed id sollicitudin neque, sed finibus mauris. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vestibulum at felis libero. Donec consectetur lorem vitae elementum sagittis.
-
 ## API Reference
 
-See the [shadcn/ui](https://ui.shadcn.com/docs/components/base/combobox) and [Base UI](https://base-ui.com/react/components/combobox#api-reference) documentation for more information.
+`CreatableCombobox` wraps the shadcn/ui [`Combobox`](https://ui.shadcn.com/docs/components/base/combobox) with Base UI’s `Combobox.Root`.
+
+| Prop                   | Type                        | Default             | Description                                                          |
+| ---------------------- | --------------------------- | ------------------- | -------------------------------------------------------------------- |
+| `onCreateValue`        | `(value: string) => void`   | —                   | Called after the dropdown closes when the user confirms a new value. |
+| `createLabel`          | `(value: string) => string` | `Create "${value}"` | Label for the create option.                                         |
+| `createOptionPosition` | `"first" \| "last"`         | `"first"`           | Where the create option appears in the list.                         |
+
+`onValueChange` will never be called with a `CreatableItem` — use `onCreateValue` to handle new value creation.
+
+All other props are passed through to the base-ui `Combobox.Root`.
+
+- See the [Base UI docs](https://base-ui.com/react/components/combobox#api-reference) for the full API.
+- Check [shadcn/ui](https://ui.shadcn.com/docs/components/base/combobox) Combobox for markup and composition.
