@@ -13,9 +13,7 @@
         "class-variance-authority",
         "clsx",
         "tailwind-merge",
-        "lucide-react",
-        "@hugeicons/react",
-        "@hugeicons/core-free-icons"
+        "lucide-react"
       ],
       "files": [
         {
