@@ -1,7 +1,10 @@
 import { gitConfig } from "@/lib/layout.shared";
 
 /**
- * Canonical site origin. Set `NEXT_PUBLIC_SITE_URL` in production (e.g. `https://flowkit.example.com`).
+ * Canonical site origin for metadata, sitemap, and OG URLs.
+ *
+ * Uses `NEXT_PUBLIC_SITE_URL` when set (e.g. `https://flowkit-ui.vzkiss.com` in Vercel
+ * project env or `.env.local`). Otherwise `VERCEL_URL` on Vercel, else localhost.
  */
 export function getSiteUrl(): string {
   if (process.env.NEXT_PUBLIC_SITE_URL) {

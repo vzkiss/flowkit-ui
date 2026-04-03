@@ -36,12 +36,10 @@ Layered on [Base UI](https://base-ui.com/) primitives: focus management, keyboar
 
 Install components with the [shadcn CLI](https://ui.shadcn.com/docs/cli). To use the short name (`@flowkit/creatable-combobox`, and so on), add Flowkit to your app’s [`components.json`](https://ui.shadcn.com/docs/components-json) under `registries`. The CLI uses that URL as a template: it swaps `{name}` for the component id when it downloads the registry file.
 
-Replace `https://<your-docs-site>` with your real docs origin (for this repo running locally, that is usually `http://localhost:3000`).
-
 ```json
 {
   "registries": {
-    "@flowkit": "https://<your-docs-site>/r/{name}.json"
+    "@flowkit": "https://flowkit-ui.vzkiss.com/r/{name}.json"
   }
 }
 ```
@@ -54,6 +52,6 @@ _If that fails, point the CLI at the component JSON directly:_
 
 ### Direct URL
 
-<InstallationTabs target="https://<your-docs-site>/r/creatable-combobox.json" />
+<InstallationTabs target="https://flowkit-ui.vzkiss.com/r/creatable-combobox.json" />
 
 Use this if you have not added the `registries` block yet, or the short name is not resolving.
