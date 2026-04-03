@@ -5,7 +5,7 @@
   "items": [
     {
       "name": "creatable-combobox",
-      "type": "registry:block",
+      "type": "registry:component",
       "title": "Creatable Combobox",
       "description": "Combobox with creatable items, built on Base UI and shadcn-style primitives (combobox, input group, button).",
       "dependencies": [
