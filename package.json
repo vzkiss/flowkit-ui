@@ -2,7 +2,7 @@
   "name": "flowkit-ui",
   "version": "0.0.0",
   "author": "vzkiss <hello@vzkiss.com> (https://vzkiss.com)",
-  "private": true,
+  "private": false,
   "packageManager": "pnpm@10.32.1",
   "engines": {
     "node": ">=24"
