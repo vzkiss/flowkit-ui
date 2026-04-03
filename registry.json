@@ -41,7 +41,7 @@
           "type": "registry:ui"
         },
         {
-          "path": "src/flowkit-ui/creatable-combobox/creatable-combobox.tsx",
+          "path": "src/flowkit/creatable-combobox/creatable-combobox.tsx",
           "type": "registry:component"
         }
       ]
