@@ -10,6 +10,7 @@ import { getMDXComponents } from "@/mdx-components";
 import type { Metadata } from "next";
 import { createRelativeLink } from "fumadocs-ui/mdx";
 import { LLMCopyButton, ViewOptions } from "@/components/ai/page-actions";
+import { DocsAttribution } from "@/components/docs/docs-attribution";
 import { gitConfig } from "@/lib/layout.shared";
 
 export default async function Page(props: PageProps<"/docs/[[...slug]]">) {
@@ -24,6 +25,9 @@ export default async function Page(props: PageProps<"/docs/[[...slug]]">) {
       toc={page.data.toc}
       full={page.data.full}
       tableOfContent={{ style: "clerk" }}
+      footer={{
+        children: <DocsAttribution />,
+      }}
     >
       <DocsTitle>{page.data.title}</DocsTitle>
       <DocsDescription className="mb-0">

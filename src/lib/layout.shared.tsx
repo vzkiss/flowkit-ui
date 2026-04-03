@@ -4,6 +4,7 @@ export const gitConfig = {
   user: "vzkiss",
   repo: "flowkit-ui",
   branch: "main",
+  userWebsite: "https://vzkiss.com",
 };
 
 export function baseOptions(): BaseLayoutProps {
