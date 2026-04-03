@@ -17,17 +17,32 @@ import {
   CreatableCombobox,
   ComboboxItemCreatable,
   isCreatableItem,
+  CreatableItem,
 } from "@/flowkit/creatable-combobox/creatable-combobox";
 
-const initialFrameworks = ["Next.js", "SvelteKit", "Nuxt.js", "Remix", "Astro"];
+type Framework = {
+  id: number;
+  value: string;
+};
+
+const initialFrameworks: Framework[] = [
+  { id: 1, value: "Next.js" },
+  { id: 2, value: "SvelteKit" },
+  { id: 3, value: "Nuxt.js" },
+  { id: 4, value: "Remix" },
+  { id: 5, value: "Astro" },
+];
 
 export default function CreatableComboboxMultiple() {
   const anchor = useComboboxAnchor();
 
   const [frameworks, setFrameworks] = useState(initialFrameworks);
+  const [selected, setSelected] = useState<Framework[]>([frameworks[0]]);
 
   const handleCreateValue = (value: string) => {
-    setFrameworks((prev) => [...prev, value]);
+    const newItem = { id: frameworks.length + 1, value };
+    setFrameworks((prev: Framework[]) => [...prev, newItem]);
+    setSelected((prev: Framework[]) => [...prev, newItem]);
   };
 
   return (
@@ -35,15 +50,19 @@ export default function CreatableComboboxMultiple() {
       multiple
       autoHighlight
       items={frameworks}
-      defaultValue={[frameworks[0]]}
+      value={selected}
+      onValueChange={(value) => {
+        console.log("multiple value", value);
+        setSelected(value as Framework[]);
+      }}
       onCreateValue={handleCreateValue}
     >
       <ComboboxChips ref={anchor} className="w-full max-w-xs">
         <ComboboxValue>
-          {(values) => (
+          {(values: Framework[]) => (
             <React.Fragment>
-              {values.map((value: string) => (
-                <ComboboxChip key={value}>{value}</ComboboxChip>
+              {values.map((value: Framework) => (
+                <ComboboxChip key={value.id}>{value.value}</ComboboxChip>
               ))}
               <ComboboxChipsInput />
             </React.Fragment>
@@ -53,14 +72,18 @@ export default function CreatableComboboxMultiple() {
       <ComboboxContent anchor={anchor}>
         <ComboboxEmpty>No items found.</ComboboxEmpty>
         <ComboboxList>
-          {(item) =>
-            isCreatableItem(item) ? (
-              <ComboboxItemCreatable key="__create__" value={item}>
-                {item.label}
-              </ComboboxItemCreatable>
+          {(item: Framework | CreatableItem) =>
+            isCreatableItem(item as CreatableItem) ? (
+              <ComboboxItemCreatable
+                key="__create__"
+                value={item as CreatableItem}
+              />
             ) : (
-              <ComboboxItem key={item} value={item}>
-                {item}
+              <ComboboxItem
+                key={(item as Framework).id}
+                value={item as Framework}
+              >
+                {(item as Framework).value}
               </ComboboxItem>
             )
           }

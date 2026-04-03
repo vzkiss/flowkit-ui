@@ -25,7 +25,8 @@ export default function ComponentPreview({
           <OpenInV0Button className="w-fit" name={name} />
         </div> 
       </div> */}
-      <div className="preview relative flex h-72 items-center justify-center p-10">
+      {/* <div className="preview relative flex h-72 items-center justify-center p-10"> */}
+      <div className="preview relative flex h-44 items-center justify-center p-10">
         {children}
       </div>
     </Card>

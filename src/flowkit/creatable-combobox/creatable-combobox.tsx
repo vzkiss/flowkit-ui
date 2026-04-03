@@ -57,6 +57,10 @@ type CreatableComboboxProps = ComboboxRootProps & {
    * Called when the user confirms a new value that doesn't exist in the list.
    * Receives the raw typed string value.
    */
+  /**
+   * onValueChange will never be called with a CreatableItem.
+   * Use onCreateValue to handle new value creation.
+   */
   onCreateValue: (value: string) => void;
 
   /** Label for the "Create" option. Defaults to `Create "${value}"`. */
@@ -125,9 +129,25 @@ function CreatableCombobox({
     next: unknown,
     details: ComboboxRootChangeEventDetails,
   ) => {
+    // multiple select
+    if (props.multiple && Array.isArray(next)) {
+      const creatable = next.find(isCreatableItem);
+      const clean = next.filter((item) => !isCreatableItem(item));
+
+      if (creatable) {
+        pendingCreateRef.current = creatable.value;
+        setQuery("");
+      }
+
+      props.onValueChange?.(clean, details);
+      return;
+    }
+
+    // single select
     if (isCreatableItem(next)) {
       pendingCreateRef.current = next.value;
       setQuery("");
+      // onCreateValue(next.value);
       return;
     }
 

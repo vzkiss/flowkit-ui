@@ -1,6 +1,6 @@
 ---
 title: Creatable Combobox
-description: A combobox for ...
+description: Create a new item when the filter matches no items
 links:
   doc: https://base-ui.com/react/components/combobox
   api: https://base-ui.com/react/components/combobox#api-reference
@@ -10,8 +10,6 @@ import ComponentPreview from "@/components/markdown/component-preview";
 import CreatableComboboxBasic from "@/examples/creatable-combobox-basic";
 import CreatableComboboxDemo from "@/examples/creatable-combobox-demo";
 import CreatableComboboxMultiple from "@/examples/creatable-combobox-multiple";
-
-## Basic
 
 <ComponentPreview
   styleName="base-nova"
@@ -23,13 +21,22 @@ import CreatableComboboxMultiple from "@/examples/creatable-combobox-multiple";
 
 ## Demo
 
-<ComponentPreview
-  styleName="base-nova"
-  name="creatable-combobox-demo"
-  previewClassName="h-56"
->
-  <CreatableComboboxDemo />
-</ComponentPreview>
+<div className="grid grid-cols-2 gap-4">
+  <ComponentPreview
+    styleName="base-nova"
+    name="creatable-combobox-demo"
+    previewClassName="h-56"
+  >
+    <CreatableComboboxDemo />
+  </ComponentPreview>
+  <ComponentPreview
+    styleName="base-nova"
+    name="creatable-combobox-demo"
+    previewClassName="h-56"
+  >
+    <CreatableComboboxDemo />
+  </ComponentPreview>
+</div>
 
 ## Multiple
 
@@ -44,6 +51,9 @@ import CreatableComboboxMultiple from "@/examples/creatable-combobox-multiple";
 # Usage
 
 See the documentation for more information.
+
+single → controlled or uncontrolled ✅
+multiple → controlled only ✅
 
 ### Accordions [#accordions]
 
