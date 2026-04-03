@@ -21,11 +21,10 @@ export default function ComponentPreview({
     >
       {/* <div className="flex items-center justify-between">
         <h2 className="text-muted-foreground text-sm sm:pl-3">{title}</h2>
-         <div className="flex items-center gap-2">
-          <OpenInV0Button className="w-fit" name={name} />
-        </div> 
+        <div className="flex items-center gap-2">
+          // <OpenInV0Button className="w-fit" name={name} />
+        </div>
       </div> */}
-      {/* <div className="preview relative flex h-72 items-center justify-center p-10"> */}
       <div className="preview relative flex h-44 items-center justify-center p-10">
         {children}
       </div>

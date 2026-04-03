@@ -147,7 +147,6 @@ function CreatableCombobox({
     if (isCreatableItem(next)) {
       pendingCreateRef.current = next.value;
       setQuery("");
-      // onCreateValue(next.value);
       return;
     }
 
