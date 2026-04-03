@@ -147,10 +147,10 @@ function CreatableCombobox({
     if (isCreatableItem(next)) {
       pendingCreateRef.current = next.value;
       setQuery("");
-      return;
+      // return;
     }
 
-    // call base-ui onValueChange or custom override
+    // pass through overrides or use base-ui default onValueChange behavior
     props.onValueChange?.(next, details);
   };
 
