@@ -1,6 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
-  "name": "flowkit",
+  "name": "flowkit-ui",
   "homepage": "https://github.com/vzkiss/flowkit-ui",
   "items": [
     {
@@ -41,7 +41,7 @@
           "type": "registry:ui"
         },
         {
-          "path": "src/flowkit/creatable-combobox/creatable-combobox.tsx",
+          "path": "src/flowkit-ui/creatable-combobox/creatable-combobox.tsx",
           "type": "registry:component"
         }
       ]
