@@ -1,10 +1,10 @@
-import { defineConfig, defineDocs } from 'fumadocs-mdx/config';
-import { metaSchema, pageSchema } from 'fumadocs-core/source/schema';
+import { defineConfig, defineDocs } from "fumadocs-mdx/config";
+import { metaSchema, pageSchema } from "fumadocs-core/source/schema";
 
 // You can customise Zod schemas for frontmatter and `meta.json` here
 // see https://fumadocs.dev/docs/mdx/collections
 export const docs = defineDocs({
-  dir: 'content/docs',
+  dir: "content/docs",
   docs: {
     schema: pageSchema,
     postprocess: {
@@ -19,5 +19,10 @@ export const docs = defineDocs({
 export default defineConfig({
   mdxOptions: {
     // MDX options
+    remarkNpmOptions: {
+      persist: {
+        id: "package-manager",
+      },
+    },
   },
 });
