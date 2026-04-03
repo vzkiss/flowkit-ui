@@ -1,13 +1,59 @@
 ---
-title: Hello World
-description: Your first document
+title: Getting Started
+description: Flowkit UI is a collection of accessible components built with shadcn/ui and Base UI.
 ---
 
-Welcome to the docs! You can start writing documents in `/content/docs`.
+## What is Flowkit UI?
 
-## What is Next?
+Each component is a React building block built with shadcn/ui, **[Base UI](https://base-ui.com/)**, **Tailwind CSS**, and **Lucide** icons.
 
-<Cards>
-  <Card title="Learn more about Next.js" href="https://nextjs.org/docs" />
-  <Card title="Learn more about Fumadocs" href="https://fumadocs.dev" />
-</Cards>
+The components here are meant to be **accessible** and **simple to customize**, so you can drop them into production apps without fighting your styling layer. Each one targets a concrete problem you often hit when building apps.
+
+The catalog is still small (today: [Creatable Combobox](/docs/components/creatable-combobox)); it will grow over time.
+
+<div className="my-6 grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
+
+<div>
+
+### shadcn/ui Foundation
+
+Built on [shadcn/ui](https://ui.shadcn.com/) conventions.\
+Your existing theme and setup apply without adopting a second design system.
+
+</div>
+
+<div>
+
+### Accessible by Design
+
+Layered on [Base UI](https://base-ui.com/) primitives: focus management, keyboard navigation, and ARIA patterns so behavior and state are clear to assistive tech and power users.
+
+</div>
+
+</div>
+
+## Installation
+
+Install components with the [shadcn CLI](https://ui.shadcn.com/docs/cli). To use the short name (`@flowkit/creatable-combobox`, and so on), add Flowkit to your app’s [`components.json`](https://ui.shadcn.com/docs/components-json) under `registries`. The CLI uses that URL as a template: it swaps `{name}` for the component id when it downloads the registry file.
+
+Replace `https://<your-docs-site>` with your real docs origin (for this repo running locally, that is usually `http://localhost:3000`).
+
+```json
+{
+  "registries": {
+    "@flowkit": "https://<your-docs-site>/r/{name}.json"
+  }
+}
+```
+
+## Example
+
+<InstallationTabs target="@flowkit/creatable-combobox" />
+
+_If that fails, point the CLI at the component JSON directly:_
+
+### Direct URL
+
+<InstallationTabs target="https://<your-docs-site>/r/creatable-combobox.json" />
+
+Use this if you have not added the `registries` block yet, or the short name is not resolving.
