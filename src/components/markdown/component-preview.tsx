@@ -1,33 +1,48 @@
-// import { OpenInV0Button } from "@/components/open-in-v0-button";
+import { readFile } from "node:fs/promises";
+import path from "node:path";
+import type { ReactNode } from "react";
+import { highlight } from "fumadocs-core/highlight";
+import { Pre } from "fumadocs-ui/components/codeblock";
+import ComponentPreviewInternal from "./component-preview-internal";
 
-import { Card } from "@/components/ui/card";
+const SAFE_EXAMPLE_NAME = /^[a-zA-Z0-9_-]+$/;
 
-interface ComponentPreviewProps {
-  title: string;
+export type ComponentPreviewProps = {
+  /** Basename of `src/examples/{name}.tsx` (no path segments). */
   name: string;
-  children: React.ReactNode;
-}
+  children: ReactNode;
+  previewClassName?: string;
+  /** Reserved for future themed previews (e.g. registry style packs). */
+  styleName?: string;
+};
 
-export default function ComponentPreview({
-  title,
+export default async function ComponentPreview({
   name,
   children,
+  previewClassName,
+  styleName,
 }: ComponentPreviewProps) {
+  if (!SAFE_EXAMPLE_NAME.test(name)) {
+    throw new Error(
+      `ComponentPreview: invalid name "${name}". Use only letters, numbers, hyphens, and underscores.`,
+    );
+  }
+
+  const filePath = path.join(process.cwd(), "src", "examples", `${name}.tsx`);
+  const source = await readFile(filePath, "utf-8");
+
+  const codeContent = await highlight(source, {
+    lang: "tsx",
+    components: { pre: Pre },
+  });
+
   return (
-    // <div className="relative flex min-h-[450px] flex-col gap-4 rounded-xl border p-4">
-    <Card
-      data-slot="component-preview"
-      className="group relative flex flex-col gap-4 rounded-xl border p-4 bg-transparent"
+    <ComponentPreviewInternal
+      previewClassName={previewClassName}
+      styleName={styleName}
+      codeContent={codeContent}
     >
-      {/* <div className="flex items-center justify-between">
-        <h2 className="text-muted-foreground text-sm sm:pl-3">{title}</h2>
-        <div className="flex items-center gap-2">
-          // <OpenInV0Button className="w-fit" name={name} />
-        </div>
-      </div> */}
-      <div className="preview relative flex h-44 items-center justify-center p-10">
-        {children}
-      </div>
-    </Card>
+      {children}
+    </ComponentPreviewInternal>
   );
 }
