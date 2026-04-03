@@ -14,6 +14,12 @@ importers:
       '@base-ui/react':
         specifier: ^1.2.0
         version: 1.2.0(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      '@hugeicons/core-free-icons':
+        specifier: ^4.1.1
+        version: 4.1.1
+      '@hugeicons/react':
+        specifier: ^1.1.6
+        version: 1.1.6(react@19.2.4)
       '@takumi-rs/image-response':
         specifier: ^0.69.5
         version: 0.69.5
@@ -79,8 +85,8 @@ importers:
         specifier: ^8.5.6
         version: 8.5.6
       shadcn:
-        specifier: ^4.0.2
-        version: 4.0.2(@types/node@25.3.3)(typescript@5.9.3)
+        specifier: ^4.1.2
+        version: 4.1.2(@types/node@25.3.3)(typescript@5.9.3)
       tailwindcss:
         specifier: ^4.2.1
         version: 4.2.1
@@ -96,10 +102,6 @@ packages:
   '@alloc/quick-lru@5.2.0':
     resolution: {integrity: sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==}
     engines: {node: '>=10'}
-
-  '@antfu/ni@25.0.0':
-    resolution: {integrity: sha512-9q/yCljni37pkMr4sPrI3G4jqdIk074+iukc5aFJl7kmDCCsiJrbZ6zKxnES1Gwg+i9RcDZwvktl23puGslmvA==}
-    hasBin: true
 
   '@babel/code-frame@7.29.0':
     resolution: {integrity: sha512-9NhCeYjq9+3uxgdtp20LSiJXJvN0FeCtNGpJxuMFZ1Kv3cWUNb6DOhJwUvcVCzKGR66cw4njwM6hrJLqgOwbcw==}
@@ -494,6 +496,14 @@ packages:
     engines: {node: '>=18.14.1'}
     peerDependencies:
       hono: ^4
+
+  '@hugeicons/core-free-icons@4.1.1':
+    resolution: {integrity: sha512-teqIBvPHl90ygIwKyJwTxOH8aNp1X1PjDTcMvLkEwdPxPD+8mssrZ5kXKIAJJFYPsz69a8LYQY0UPid4PAdavg==}
+
+  '@hugeicons/react@1.1.6':
+    resolution: {integrity: sha512-c2LhXJMAW5wN1pC/smBXG0YPqUON6ceR/ZdXHCjEI9KvB+hjtqYjmzIxok5hAQOeXGz0WtORgCQMzqewFKAZwg==}
+    peerDependencies:
+      react: '>=16.0.0'
 
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
@@ -2013,10 +2023,6 @@ packages:
     resolution: {integrity: sha512-zbB9rCJAT1rbjiVDb2hqKFHNYLxgtk8NURxZ3IZwD3F6NtxbXZQCnnSi1Lkx+IDohdPlFp222wVALIheZJQSEg==}
     engines: {node: '>=8'}
 
-  ansis@4.2.0:
-    resolution: {integrity: sha512-HqZ5rWlFjGiV0tDm3UxxgNRqsOTniqoKZu0pIAfh7TZQMGuZK+hH0drySty0si0QXj1ieop4+SkSfPZBPPkHig==}
-    engines: {node: '>=14'}
-
   argparse@2.0.1:
     resolution: {integrity: sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q==}
 
@@ -2871,9 +2877,6 @@ packages:
 
   fuzzysort@3.1.0:
     resolution: {integrity: sha512-sR9BNCjBg6LNgwvxlBd0sBABvQitkLzoVY9MYYROQVX/FvfJ4Mai9LsGhDgd8qYdds0bY77VzYd5iuB+v5rwQQ==}
-
-  fzf@0.5.2:
-    resolution: {integrity: sha512-Tt4kuxLXFKHy8KT40zwsUPUkg1CrsgY25FxA2U/j/0WgEDCk3ddc/zLTCCcbSHX9FcKtLuVaDGtGE/STWC+j3Q==}
 
   generator-function@2.0.1:
     resolution: {integrity: sha512-SFdFmIJi+ybC0vjlHN0ZGVGHc3lgE0DxPAT0djjVg+kjOnSqclqmj0KQ7ykTOLP6YxoqOvuAODGdcHJn+43q3g==}
@@ -3852,9 +3855,6 @@ packages:
     resolution: {integrity: sha512-LaNjtRWUBY++zB5nE/NwcaoMylSPk+S+ZHNB1TzdbMJMny6dynpAGt7X/tl/QYq3TIeE6nxHppbo2LGymrG5Pw==}
     engines: {node: '>=10'}
 
-  package-manager-detector@1.6.0:
-    resolution: {integrity: sha512-61A5ThoTiDG/C8s8UMZwSorAGwMJ0ERVGj2OjoW5pAalsNOg15+iQiPzrLJ4jhZ1HJzmC2PIHT2oEiH3R5fzNA==}
-
   parent-module@1.0.1:
     resolution: {integrity: sha512-GQ2EWRpQV8/o+Aw8YqtfZZPfNRWZYkbidE9k5rpl/hC3vtHHBfGm2Ifi6qWV+coDGkrUKZAxE3Lot5kcsRlh+g==}
     engines: {node: '>=6'}
@@ -4204,8 +4204,8 @@ packages:
   setprototypeof@1.2.0:
     resolution: {integrity: sha512-E5LDX7Wrp85Kil5bhZv46j8jOeboKq5JMmYM3gVGdGH8xFpPWXUMsNrlODCrkoxMEeNi/XZIwuRvY4XNwYMJpw==}
 
-  shadcn@4.0.2:
-    resolution: {integrity: sha512-U6BxywcVt5Vy+iLdjoyWTPcuz2RQNad09tjJsW8hyKtxlx7VAvzHIvoNxvXN+gxWt/HX8kt/cVNk8AXcmPUaNQ==}
+  shadcn@4.1.2:
+    resolution: {integrity: sha512-qNQcCavkbYsgBj+X09tF2bTcwRd8abR880bsFkDU2kMqceMCLAm5c+cLg7kWDhfh1H9g08knpQ5ZEf6y/co16g==}
     hasBin: true
 
   sharp@0.34.5:
@@ -4682,13 +4682,6 @@ snapshots:
 
   '@alloc/quick-lru@5.2.0': {}
 
-  '@antfu/ni@25.0.0':
-    dependencies:
-      ansis: 4.2.0
-      fzf: 0.5.2
-      package-manager-detector: 1.6.0
-      tinyexec: 1.0.2
-
   '@babel/code-frame@7.29.0':
     dependencies:
       '@babel/helper-validator-identifier': 7.28.5
@@ -5076,6 +5069,12 @@ snapshots:
   '@hono/node-server@1.19.10(hono@4.12.4)':
     dependencies:
       hono: 4.12.4
+
+  '@hugeicons/core-free-icons@4.1.1': {}
+
+  '@hugeicons/react@1.1.6(react@19.2.4)':
+    dependencies:
+      react: 19.2.4
 
   '@humanfs/core@0.19.1': {}
 
@@ -6547,8 +6546,6 @@ snapshots:
     dependencies:
       color-convert: 2.0.1
 
-  ansis@4.2.0: {}
-
   argparse@2.0.1: {}
 
   aria-hidden@1.2.6:
@@ -7608,8 +7605,6 @@ snapshots:
   functions-have-names@1.2.3: {}
 
   fuzzysort@3.1.0: {}
-
-  fzf@0.5.2: {}
 
   generator-function@2.0.1: {}
 
@@ -8877,8 +8872,6 @@ snapshots:
     dependencies:
       p-limit: 3.1.0
 
-  package-manager-detector@1.6.0: {}
-
   parent-module@1.0.1:
     dependencies:
       callsites: 3.1.0
@@ -9359,9 +9352,8 @@ snapshots:
 
   setprototypeof@1.2.0: {}
 
-  shadcn@4.0.2(@types/node@25.3.3)(typescript@5.9.3):
+  shadcn@4.1.2(@types/node@25.3.3)(typescript@5.9.3):
     dependencies:
-      '@antfu/ni': 25.0.0
       '@babel/core': 7.29.0
       '@babel/parser': 7.29.0
       '@babel/plugin-transform-typescript': 7.28.6(@babel/core@7.29.0)
