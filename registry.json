@@ -1,0 +1,52 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "flowkit",
+  "homepage": "https://github.com/vzkiss/flowkit-ui",
+  "items": [
+    {
+      "name": "creatable-combobox",
+      "type": "registry:block",
+      "title": "Creatable Combobox",
+      "description": "Combobox with creatable items, built on Base UI and shadcn-style primitives (combobox, input group, button).",
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority",
+        "clsx",
+        "tailwind-merge",
+        "lucide-react",
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
+      "files": [
+        {
+          "path": "src/lib/utils.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/components/ui/button.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/ui/input.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/ui/textarea.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/ui/input-group.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/ui/combobox.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/flowkit/creatable-combobox/creatable-combobox.tsx",
+          "type": "registry:component"
+        }
+      ]
+    }
+  ]
+}
