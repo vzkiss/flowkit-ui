@@ -7,6 +7,22 @@ import ComponentPreviewInternal from "./component-preview-internal";
 
 const SAFE_EXAMPLE_NAME = /^[a-zA-Z0-9_-]+$/;
 
+/**
+ * Map internal `@/flowkit/…` imports to `@/components/…` for the Code tab.
+ *
+ * - `@/flowkit/creatable-combobox/creatable-combobox` → `@/components/creatable-combobox`
+ *   (drops the registry folder segment; keeps the file/module path after it)
+ * - `@/flowkit/custom-component` → `@/components/custom-component` (no nested folder)
+ */
+function rewriteFlowkitPathsForDocsPreview(source: string): string {
+  let s = source;
+  // Multi-segment: @/flowkit/<folder>/<rest> → @/components/<rest>
+  s = s.replace(/@\/flowkit\/[^/]+\/(.+)/g, "@/components/$1");
+  // Single-segment: @/flowkit/<module> → @/components/<module>
+  s = s.replace(/@\/flowkit\/([^/"'\s]+)/g, "@/components/$1");
+  return s;
+}
+
 export type ComponentPreviewProps = {
   /** Basename of `src/examples/{name}.tsx` (no path segments). */
   name: string;
@@ -30,8 +46,9 @@ export default async function ComponentPreview({
 
   const filePath = path.join(process.cwd(), "src", "examples", `${name}.tsx`);
   const source = await readFile(filePath, "utf-8");
+  const displaySource = rewriteFlowkitPathsForDocsPreview(source);
 
-  const codeContent = await highlight(source, {
+  const codeContent = await highlight(displaySource, {
     lang: "tsx",
     components: { pre: Pre },
   });
