@@ -1,6 +1,6 @@
 # Flowkit UI
 
-A set of opinionated, accessible React components for production apps, layered
+A set of opinionated, accessible React components for production apps, based
 on shadcn/ui and Base UI.
 
 The catalog is small today and will grow
