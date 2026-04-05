@@ -31,7 +31,7 @@ export default function ComboboxBasic() {
 
   return (
     <CreatableCombobox items={labels} onCreateValue={handleCreateValue}>
-      <ComboboxInput placeholder="Select or create an issue label…" />
+      <ComboboxInput placeholder="Create a tag..." />
       <ComboboxContent>
         <ComboboxEmpty>No labels match.</ComboboxEmpty>
         <ComboboxList>

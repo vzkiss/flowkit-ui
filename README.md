@@ -1,10 +1,8 @@
 # Flowkit UI
 
-A set of opinionated, accessible React components for production apps, based
-on shadcn/ui and Base UI.
+shadcn/ui components for the patterns shadcn doesn't cover.
 
-The catalog is small today and will grow
-over time.
+Patterns teams rebuild on every project, done once.
 
 ## Documentation
 

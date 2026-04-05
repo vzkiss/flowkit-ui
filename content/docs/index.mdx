@@ -1,15 +1,11 @@
 ---
 title: Getting Started
-description: Flowkit UI is a collection of accessible components built with shadcn/ui and Base UI.
+description: Flowkit UI is a collection of patterns shadcn doesn't cover.
 ---
 
 ## What is Flowkit UI?
 
-Each component is a React building block built with shadcn/ui, **[Base UI](https://base-ui.com/)**, **Tailwind CSS**, and **Lucide** icons.
-
-The components here are meant to be **accessible** and **simple to customize**, so you can drop them into production apps without fighting your styling layer. Each one targets a concrete problem you often hit when building apps.
-
-The catalog is still small (today: [Creatable Combobox](/docs/components/creatable-combobox)); it will grow over time.
+Patterns teams rebuild on every project, done once. Each one targets a concrete problem you often hit when building apps.
 
 <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
 
@@ -17,7 +13,7 @@ The catalog is still small (today: [Creatable Combobox](/docs/components/creatab
 
 ### shadcn/ui Foundation
 
-Built on [shadcn/ui](https://ui.shadcn.com/) conventions.\
+Follows [shadcn/ui](https://ui.shadcn.com/) conventions.\
 Your existing theme and setup apply without adopting a second design system.
 
 </Card>
@@ -26,7 +22,7 @@ Your existing theme and setup apply without adopting a second design system.
 
 ### Accessible by Design
 
-Layered on [Base UI](https://base-ui.com/) primitives: focus management, keyboard navigation, and ARIA patterns so behavior and state are clear to assistive tech and power users.
+Built on [Base UI](https://base-ui.com/) primitives: focus management, keyboard navigation, and ARIA patterns so behavior and state are clear to assistive tech and power users.
 
 </Card>
 
@@ -34,7 +30,7 @@ Layered on [Base UI](https://base-ui.com/) primitives: focus management, keyboar
 
 ## Installation
 
-Install components with the [shadcn CLI](https://ui.shadcn.com/docs/cli). To use the short name (`@flowkit-ui/creatable-combobox`, and so on), add Flowkit to your app’s [`components.json`](https://ui.shadcn.com/docs/components-json) under `registries`. The CLI uses that URL as a template: it swaps `{name}` for the component id when it downloads the registry file.
+Add `flowkit-ui` as a registry in your [`components.json`](https://ui.shadcn.com/docs/components-json) to use short names instead of full URLs. The CLI swaps `{name}` for the component id when it downloads the registry file.
 
 ```json
 {

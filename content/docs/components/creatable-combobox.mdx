@@ -1,6 +1,6 @@
 ---
 title: Creatable Combobox
-description: A flexible input control with multiselect, autocomplete, and creatable support.
+description: A combobox with autocomplete, multiselect, and creatable support.
 links:
   doc: https://base-ui.com/react/components/combobox
   api: https://base-ui.com/react/components/combobox#api-reference
@@ -21,21 +21,79 @@ import CreatableComboboxMultiple from "@/examples/creatable-combobox-multiple";
 
 ## Installation
 
-Install the component into your project:
-
 <InstallationTabs target="@flowkit-ui/creatable-combobox" />
+
+If you haven't added the registry yet, add this to your `components.json` first:
+
+```json
+{
+  "registries": {
+    "@flowkit-ui": "https://flowkit-ui.vzkiss.com/r/{name}.json"
+  }
+}
+```
+
+Or install directly without the registry:
+
+<InstallationTabs target="https://flowkit-ui.vzkiss.com/r/creatable-combobox.json" />
 
 ## Usage
 
+`CreatableCombobox` composes the shadcn/ui [`Combobox`](https://ui.shadcn.com/docs/components/base/combobox) primitives. Import those from `@/components/ui/combobox`, and the creatable helpers from `@/components/ui/creatable-combobox`.
+
 ```tsx
+"use client";
+
+import { useState } from "react";
+import {
+  ComboboxContent,
+  ComboboxEmpty,
+  ComboboxInput,
+  ComboboxItem,
+  ComboboxList,
+} from "@/components/ui/combobox";
 import {
   CreatableCombobox,
   ComboboxItemCreatable,
   isCreatableItem,
 } from "@/components/ui/creatable-combobox";
+
+const initialItems = ["Bug", "Regression", "Tech Debt"];
+
+export function ExampleCreatableCombobox() {
+  const [items, setItems] = useState(initialItems);
+
+  return (
+    <CreatableCombobox
+      items={items}
+      onCreateValue={(value) =>
+        setItems((prev) => [...prev, value].sort((a, b) => a.localeCompare(b)))
+      }
+    >
+      <ComboboxInput placeholder="Create a tag..." />
+      <ComboboxContent>
+        <ComboboxEmpty>No matches.</ComboboxEmpty>
+        <ComboboxList>
+          {(item) =>
+            isCreatableItem(item) ? (
+              <ComboboxItemCreatable key="__create__" value={item} />
+            ) : (
+              <ComboboxItem key={item} value={item}>
+                {item}
+              </ComboboxItem>
+            )
+          }
+        </ComboboxList>
+      </ComboboxContent>
+    </CreatableCombobox>
+  );
+}
 ```
 
-Single select supports both controlled and uncontrolled usage. Multiple select requires a controlled `value` prop — the caller owns the selected array and is responsible for adding newly created items to both `items` and `value` inside `onCreateValue`.
+Single select supports both controlled and uncontrolled usage.
+Multiple select requires a controlled `value` prop. Creating new items requires the caller to manage both the items list and the selection.
+
+`isCreatableItem(item)` is a type guard for use inside `ComboboxList` to differentiate creatable items from regular items.
 
 ## Examples
 
