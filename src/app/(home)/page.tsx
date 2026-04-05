@@ -25,7 +25,7 @@ export default function HomePage() {
     <div className="mx-auto flex w-full max-w-3xl flex-1 flex-col px-4 py-16 md:py-24">
       <section className="text-center">
         <h1 className="text-2xl font-bold tracking-tight sm:text-4xl">
-          shadcn/ui components for the patterns shadcn doesn't cover
+          shadcn/ui components for the patterns shadcn doesn{"'"}t cover
         </h1>
 
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
