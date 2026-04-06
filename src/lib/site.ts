@@ -20,7 +20,7 @@ export const siteConfig = {
   name: "Flowkit UI",
   titleTemplate: "%s | Flowkit UI",
   description:
-    "Opinionated, accessible React components for production apps—built on shadcn/ui and Base UI.",
+    "Patterns teams rebuild on every project, done once. Each one targets a concrete problem. Built on shadcn/ui and Base UI.",
   keywords: [
     "React",
     "components",
