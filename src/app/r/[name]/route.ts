@@ -11,32 +11,32 @@ const REGISTRY_JSON_RE = /^[a-z0-9][a-z0-9-]*\.json$/;
 
 let redis: Redis | null | undefined;
 
-/** REST URL + write-capable token (read-only tokens cannot run INCR). */
-function getRedisRestEnv(): { url: string; token: string } | null {
-  const pairs: ReadonlyArray<
-    readonly [string | undefined, string | undefined]
-  > = [
-    [process.env.UPSTASH_REDIS_REST_URL, process.env.UPSTASH_REDIS_REST_TOKEN],
-    [
-      process.env["flowkit_KV_REST_API_URL"],
-      process.env["flowkit_KV_REST_API_TOKEN"],
-    ],
-  ];
-  for (const [url, token] of pairs) {
-    if (url && token) return { url, token };
-  }
-  return null;
-}
-
+/**
+ * Prefer `Redis.fromEnv()` (Upstash docs / Vercel integration): reads
+ * `UPSTASH_REDIS_REST_*`, or `KV_REST_API_URL` + `KV_REST_API_TOKEN`.
+ * Vercel may instead expose prefixed `flowkit_KV_REST_API_*` — handle those explicitly.
+ */
 function getRedis(): Redis | null {
   if (redis !== undefined) return redis;
-  const env = getRedisRestEnv();
-  if (!env) {
-    redis = null;
-    return null;
+
+  const url = process.env.UPSTASH_REDIS_REST_URL || process.env.KV_REST_API_URL;
+  const token =
+    process.env.UPSTASH_REDIS_REST_TOKEN || process.env.KV_REST_API_TOKEN;
+
+  if (url && token) {
+    redis = Redis.fromEnv();
+    return redis;
   }
-  redis = new Redis({ url: env.url, token: env.token });
-  return redis;
+
+  const flowkitUrl = process.env["flowkit_KV_REST_API_URL"];
+  const flowkitToken = process.env["flowkit_KV_REST_API_TOKEN"];
+  if (flowkitUrl && flowkitToken) {
+    redis = new Redis({ url: flowkitUrl, token: flowkitToken });
+    return redis;
+  }
+
+  redis = null;
+  return null;
 }
 
 async function recordInstall(component: string) {
