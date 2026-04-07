@@ -14,6 +14,7 @@
 /out/
 /build
 /public/r
+/.registry
 *.tsbuildinfo
 
 # misc
