@@ -25,7 +25,6 @@ const isCreatableItem = (item: unknown): item is CreatableItem => {
     (item as CreatableItem).creatable === true
   );
 };
-
 // ─── Internal helpers ─────────────────────────────────────────────────────────
 
 /** Display string for an item — mirrors base-ui's own default logic. */
@@ -170,14 +169,14 @@ function CreatableCombobox({
       }}
       itemToStringLabel={(item: unknown): string => {
         if (isCreatableItem(item)) return item.value;
-        // pass through overrides or use base-ui default itemToStringLabel behavior
+        // pass through overrides or uses base-ui default itemToStringLabel
         return props.itemToStringLabel?.(item) ?? toLabel(item);
       }}
       isItemEqualToValue={(a: unknown, b: unknown) => {
         if (isCreatableItem(a) || isCreatableItem(b)) {
           return toValueKey(a) === toValueKey(b);
         }
-        // pass through overrides or use base-ui default Object.is behavior
+        // pass through overrides or uses base-ui default Object.is
         return props.isItemEqualToValue?.(a, b) ?? Object.is(a, b);
       }}
     >

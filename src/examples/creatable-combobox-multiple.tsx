@@ -70,7 +70,7 @@ export default function CreatableComboboxMultiple() {
               {values.map((value: IssueLabel) => (
                 <ComboboxChip key={value.id}>{value.value}</ComboboxChip>
               ))}
-              <ComboboxChipsInput placeholder="Create or select a tag..." />
+              <ComboboxChipsInput placeholder="Type to create or select a tag..." />
             </React.Fragment>
           )}
         </ComboboxValue>

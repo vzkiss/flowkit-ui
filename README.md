@@ -1,8 +1,8 @@
 # Flowkit UI
 
-shadcn/ui components for the patterns shadcn doesn't cover.
+ui components for the patterns shadcn doesn't cover.
 
-Patterns teams rebuild on every project, done once.
+Patterns teams rebuild on every project - built once, reusable everywhere.
 
 ## Documentation
 
@@ -10,4 +10,4 @@ Visit [https://flowkit-ui.vzkiss.com/docs](https://flowkit-ui.vzkiss.com/docs) t
 
 ## License
 
-Licensed under the [MIT](LICENSE)
+MIT

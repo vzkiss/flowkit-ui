@@ -4,6 +4,8 @@ import CreatableComboboxDemo from "@/examples/creatable-combobox-demo";
 import { gitConfig } from "@/lib/layout.shared";
 import { DocsAttribution } from "@/components/docs/docs-attribution";
 
+const title = "ui components for the patterns shadcn doesn't cover";
+
 const bullets = [
   {
     title: "Fits your stack",
@@ -15,7 +17,7 @@ const bullets = [
   },
   {
     title: "Fills the gaps",
-    body: "Patterns teams rebuild on every project, done once.",
+    body: "Patterns teams rebuild on every project - built once, reusable everywhere.",
   },
 ] as const;
 
@@ -25,8 +27,8 @@ export default function HomePage() {
   return (
     <div className="mx-auto flex w-full max-w-3xl flex-1 flex-col px-4 py-16 md:py-24">
       <section className="text-center">
-        <h1 className="text-2xl font-bold tracking-tight sm:text-4xl">
-          shadcn/ui components for the patterns shadcn doesn{"'"}t cover
+        <h1 className="text-2xl font-bold tracking-tight sm:text-4xl text-balance">
+          {title}
         </h1>
 
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
@@ -89,7 +91,7 @@ export default function HomePage() {
         The catalog is small today and will grow over time.
       </p>
 
-      <div className="w-[85%] mx-auto">
+      <div className="sm:w-[85%] mx-auto">
         <DocsAttribution className="text-center sm:text-center" />
       </div>
     </div>

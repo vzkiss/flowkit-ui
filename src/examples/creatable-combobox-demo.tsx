@@ -53,7 +53,7 @@ export default function CreatableComboboxDemo() {
         setSelected(created!);
       }}
     >
-      <ComboboxInput placeholder="Create a tag..." showClear />
+      <ComboboxInput placeholder="Type to create a tag..." showClear />
       <ComboboxContent>
         <ComboboxEmpty>No labels match.</ComboboxEmpty>
         <ComboboxList>
