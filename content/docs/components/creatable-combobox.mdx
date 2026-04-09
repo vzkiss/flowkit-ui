@@ -42,9 +42,6 @@ Or install directly without the registry:
 `CreatableCombobox` composes the shadcn/ui [`Combobox`](https://ui.shadcn.com/docs/components/base/combobox) primitives. Import those from `@/components/ui/combobox`, and the creatable helpers from `@/components/ui/creatable-combobox`.
 
 ```tsx
-"use client";
-
-import { useState } from "react";
 import {
   ComboboxContent,
   ComboboxEmpty,
@@ -57,7 +54,9 @@ import {
   ComboboxItemCreatable,
   isCreatableItem,
 } from "@/components/ui/creatable-combobox";
+```
 
+```tsx
 const initialItems = ["Bug", "Regression", "Tech Debt"];
 
 export function ExampleCreatableCombobox() {
@@ -70,7 +69,7 @@ export function ExampleCreatableCombobox() {
         setItems((prev) => [...prev, value].sort((a, b) => a.localeCompare(b)))
       }
     >
-      <ComboboxInput placeholder="Create a tag..." />
+      <ComboboxInput placeholder="Type to create a tag..." />
       <ComboboxContent>
         <ComboboxEmpty>No matches.</ComboboxEmpty>
         <ComboboxList>
