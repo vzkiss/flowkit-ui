@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Check } from "lucide-react";
 import CreatableComboboxDemo from "@/examples/creatable-combobox-demo";
 import { gitConfig } from "@/lib/layout.shared";
+import { DocsAttribution } from "@/components/docs/docs-attribution";
 
 const bullets = [
   {
@@ -84,9 +85,13 @@ export default function HomePage() {
         ))}
       </ul>
 
-      <p className="mt-12 text-center max-w-2xl text-sm text-muted-foreground">
+      <p className="mt-12 text-center text-sm text-muted-foreground">
         The catalog is small today and will grow over time.
       </p>
+
+      <div className="w-[85%] mx-auto">
+        <DocsAttribution className="text-center sm:text-center" />
+      </div>
     </div>
   );
 }

@@ -1,10 +1,16 @@
 import { gitConfig } from "@/lib/layout.shared";
+import { cn } from "@/lib/utils";
 
 /** Shown under prev/next in DocsPage footer — reads better than the sidebar slot. */
-export function DocsAttribution() {
+export function DocsAttribution({ className }: { className?: string }) {
   return (
-    <div className="mt-6 border-t border-fd-border pt-6">
-      <p className="text-center text-xs leading-relaxed text-fd-muted-foreground sm:text-start">
+    <div
+      className={cn(
+        "mt-6 border-t border-fd-border pt-6 text-center sm:text-start",
+        className,
+      )}
+    >
+      <p className="text-xs leading-relaxed text-fd-muted-foreground">
         Built by{" "}
         <a
           href={gitConfig.userWebsite}
