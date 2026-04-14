@@ -1,14 +1,13 @@
 import { track } from '@vercel/analytics/server';
 import { notFound } from 'next/navigation';
-import { NextResponse, type NextRequest } from 'next/server';
-import { getAllPackageNames, getPackage } from '@/lib/registry';
+import { type NextRequest, NextResponse } from 'next/server';
+import { getAllPackageNames, getPackage } from '../../../lib/package';
 
-export const dynamic = 'force-dynamic';
+interface RegistryParams {
+  params: Promise<{ component: string }>;
+}
 
-export async function GET(
-  _request: NextRequest,
-  { params }: RouteContext<'/r/[component]'>,
-) {
+export const GET = async (_: NextRequest, { params }: RegistryParams) => {
   const { component } = await params;
 
   if (!component.endsWith('.json')) {
@@ -18,7 +17,7 @@ export async function GET(
     );
   }
 
-  const packageName = component.replace(/\.json$/, '');
+  const packageName = component.replace('.json', '');
 
   if (process.env.NODE_ENV === 'production') {
     try {
@@ -35,9 +34,10 @@ export async function GET(
     console.error(error);
     notFound();
   }
-}
+};
 
-export async function generateStaticParams() {
+export const generateStaticParams = async () => {
   const packageNames = await getAllPackageNames();
-  return packageNames.map((name) => ({ component: `${name}.json` }));
-}
+
+  return packageNames.map((name: string) => ({ component: `${name}.json` }));
+};
