@@ -1,6 +1,6 @@
 {
-  "name": "Flowkit UI",
-  "short_name": "Flowkit UI",
+  "name": "flowkit-ui",
+  "short_name": "flowkit-ui",
   "description": "Opinionated, accessible React components for production apps—built on shadcn/ui and Base UI.",
   "start_url": "/",
   "display": "browser",

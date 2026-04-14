@@ -1,3 +1,4 @@
+/** Full `registry.json` for discovery. Download counts: see `recordRegistryDownload`. */
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { type NextRequest, NextResponse } from 'next/server';

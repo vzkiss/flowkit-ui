@@ -28,8 +28,14 @@ function shouldRecordDownload(): boolean {
  * Increments a per-component download counter in Upstash Redis (REST).
  * Keys: `flowkit:registry:downloads:<component>` (e.g. `creatable-combobox`, `registry`).
  *
- * Set `flowkit_KV_REST_API_URL` and `flowkit_KV_REST_API_TOKEN` (Upstash REST).
- * For local testing against Redis, set `UPSTASH_RECORD_IN_DEV=1`.
+ * **Semantics:** This counts successful registry **responses** (one `INCR` per successful
+ * `getPackage` / registry JSON read). The shadcn CLI often performs **multiple GETs** to the
+ * same component URL during one `shadcn add` (resolve, re-read, etc.), so totals reflect
+ * **HTTP fetches**, not “one increment per human install.” Do not treat the number as
+ * unique installers without additional deduping.
+ *
+ * Env: `flowkit_KV_REST_API_URL` and `flowkit_KV_REST_API_TOKEN` (Upstash REST).
+ * Local Redis testing: set `UPSTASH_RECORD_IN_DEV=1`.
  */
 export async function recordRegistryDownload(component: string): Promise<void> {
   if (!shouldRecordDownload()) return;

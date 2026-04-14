@@ -17,8 +17,8 @@ export function getSiteUrl(): string {
 }
 
 export const siteConfig = {
-  name: "Flowkit UI",
-  titleTemplate: "%s | Flowkit UI",
+  name: "flowkit-ui",
+  titleTemplate: "%s | flowkit-ui",
   description:
     "Patterns teams rebuild on every project - built once, reusable everywhere. Each one targets a concrete problem. Built on shadcn/ui and Base UI.",
   keywords: [
@@ -28,8 +28,8 @@ export const siteConfig = {
     "Base UI",
     "Tailwind CSS",
     "accessible",
-    "Flowkit",
-    "UI",
+    "flowkit-ui",
+    "ui",
   ],
   /** Default Open Graph / Twitter image (docs index). */
   defaultOgImagePath: "/og/docs/image.webp",

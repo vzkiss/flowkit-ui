@@ -1,4 +1,4 @@
-# Flowkit UI
+# flowkit-ui
 
 ui components for the patterns shadcn doesn't cover.
 
