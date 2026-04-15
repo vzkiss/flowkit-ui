@@ -4,6 +4,9 @@ import { type NextRequest, NextResponse } from 'next/server';
 import { getAllPackageNames, getPackage } from '@/lib/package';
 import { recordRegistryDownload } from '@/lib/upstash-redis';
 
+// Must be dynamic so every request executes `recordRegistryDownload`.
+export const dynamic = 'force-dynamic';
+
 interface RegistryParams {
   params: Promise<{ component: string }>;
 }
